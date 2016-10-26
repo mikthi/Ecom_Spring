@@ -13,12 +13,14 @@
 
 	<dependencies>
 
-		<!-- Servlet -->
+
+
+
+		<!-- JSTL Library -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<!-- JSP Library -->
@@ -28,13 +30,13 @@
 			<version>2.3.1</version>
 		</dependency>
 
-		<!-- JSTL Library -->
+		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
-
 		<!-- Hibernate library -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
