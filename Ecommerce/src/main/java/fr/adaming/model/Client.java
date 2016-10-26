@@ -4,5 +4,5 @@ public class Client {
 	
 	private String nom;
 
-	private int id; // à conserver
+	private int id_cl; // à conserver
 }

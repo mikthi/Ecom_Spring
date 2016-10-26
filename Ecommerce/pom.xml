@@ -13,9 +13,6 @@
 
 	<dependencies>
 
-
-
-
 		<!-- JSTL Library -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
