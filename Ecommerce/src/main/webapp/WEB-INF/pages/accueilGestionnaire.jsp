@@ -9,7 +9,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Toto</h1>
+	<div align="center">
+		<h1>Accueil</h1>
+	</div>
+
+	<table>
+		<tr>
+			<td>
+				<form action="formAjoutCateg">
+					<input type="submit" value="Ajouter Catégorie">
+				</form>
+			</td>
+			<td>
+				<form action="formAjoutProd">
+					<input type="submit" value="Ajouter Produit">
+				</form>
+			</td>
+			<td>
+				<form action="">
+					<input type="submit" value="Rechercher Produit">
+				</form>
+			</td>
+			<td align="right">
+				<form action="">
+					<input type="submit" value="Afficher Catégories">
+				</form>
+			</td>
+			<td>
+				<form action="">
+					<input type="submit" value="Afficher Produits">
+				</form>
+			</td>
+		</tr>
+	</table>
 
 	<br />
 	<a href="<c:url value="/j_spring_security_logout" />"> Se

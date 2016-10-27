@@ -16,7 +16,6 @@ public class SecurityController {
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout()
 	{
-		//TODO changer retour de la page
 		return "index";
 	}
 
