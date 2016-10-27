@@ -5,11 +5,46 @@
 	version="3.0">
 	<display-name>Ecommerce</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+
+	<!-- localisation des fichiers de configuration du contexte spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+					/WEB-INF/application-context.xml
+					/WEB-INF/context-security.xml
+		</param-value>
+	</context-param>
+
+	<!-- écouteur du contexte -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- déclaration de la servlet unique de spring MVC -->
+	<servlet>
+		<servlet-name>ecomserv</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ecomserv</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- filtre pour réaliser spring Security (nom+classe) -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<!-- domaine d'applciation du filtre -->
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
 </web-app>

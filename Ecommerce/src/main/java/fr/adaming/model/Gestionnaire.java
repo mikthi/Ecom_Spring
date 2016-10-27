@@ -4,11 +4,13 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +29,9 @@ public class Gestionnaire extends Personne implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_gestionnaire;
 	private String password;
+	private boolean activated;
+	@OneToMany(mappedBy="gestionnaire")
+	private List<Role> roles;
 
 	/**
 	 * Constructeur vide
@@ -34,31 +39,34 @@ public class Gestionnaire extends Personne implements Serializable {
 	public Gestionnaire() {
 	}
 
-	/**
-	 * Constructeur avec paramètres sans id
-	 * 
-	 * @param nom
-	 * @param prenom
-	 * @param password
-	 */
-	public Gestionnaire(String nom, String prenom, String password) {
-		super(nom, prenom);
-		this.password = password;
-	}
 
 	/**
-	 * Constructeurs avec paramètres et id
-	 * 
-	 * @param nom
-	 * @param prenom
 	 * @param id_gestionnaire
 	 * @param password
+	 * @param activated
 	 */
-	public Gestionnaire(String nom, String prenom, int id_gestionnaire, String password) {
-		super(nom, prenom);
+	public Gestionnaire(int id_gestionnaire, String password, boolean activated) {
+		super();
 		this.id_gestionnaire = id_gestionnaire;
 		this.password = password;
+		this.activated = activated;
+
 	}
+
+	
+	
+	
+	/**
+	 * @param password
+	 * @param activated
+	 */
+	public Gestionnaire(String password, boolean activated) {
+		super();
+		this.password = password;
+		this.activated = activated;
+
+	}
+
 
 	/**
 	 * Getters et Setters
@@ -93,6 +101,22 @@ public class Gestionnaire extends Personne implements Serializable {
 		this.password = password;
 	}
 	
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
 	/**
 	 * Redéfinition de toString
