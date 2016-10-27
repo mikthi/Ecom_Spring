@@ -8,7 +8,7 @@ import fr.adaming.model.Gestionnaire;
 import fr.adaming.model.Produit;
 
 
-public interface IEditerDao extends IConsulterDao {
+public interface IEditerDao  {
 	public void ajouterProduit(Produit p);
 	public void modifierProduit(Produit p);
 	public void supprimerProduit(Produit p);

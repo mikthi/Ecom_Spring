@@ -6,10 +6,13 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author inti0210
  *
  */
+@Component
 public class Panier implements Serializable {
 
 	/**
