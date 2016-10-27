@@ -12,11 +12,12 @@ public class SecurityController {
 	{
 		return "login";
 	}
-	@RequestMapping(value="/logout")
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout()
 	{
 		//TODO changer retour de la page
-		return "login";
+		return "index";
 	}
 
 
