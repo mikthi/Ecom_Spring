@@ -2,6 +2,8 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,14 +26,26 @@ public class ConsulterDaoImpl implements IConsulterDao {
 
 	@Override
 	public List<Produit> consulterTousLesProduits() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM Produit";
+		Query query = s.createQuery(req);
+		@SuppressWarnings("unchecked")
+		List<Produit> listeProduits = query.list();
+
+		return listeProduits;
 	}
 
 	@Override
 	public List<Categorie> consulterToutesLesCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM Categorie";
+		Query query = s.createQuery(req);
+		@SuppressWarnings("unchecked")
+		List<Categorie> listeCategories = query.list();
+
+		return listeCategories;
 	}
 
 	@Override
@@ -52,6 +66,34 @@ public class ConsulterDaoImpl implements IConsulterDao {
 		return null;
 	}
 	
+	@Override
+	public Categorie consulterCategorieParId(int id_categorie) {
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM Categorie c WHERE c.id_categorie=:categ_id";
+		Query query = s.createQuery(req);
+
+		query.setParameter("categ_id", id_categorie);
+
+		Categorie c = (Categorie) query.uniqueResult();
+
+		return c;
+	}
+	
+	@Override
+	public Produit consulterProduitParId(int id_produit) {
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM Produit p WHERE p.id_produit=:prod_id";
+		Query query = s.createQuery(req);
+
+		query.setParameter("prod_id", id_produit);
+
+		Produit p = (Produit) query.uniqueResult();
+
+		return p;
+	}
+	
 	/** getters et setters */
 	
 	/**
@@ -60,6 +102,5 @@ public class ConsulterDaoImpl implements IConsulterDao {
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
-
 
 }

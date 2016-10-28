@@ -13,7 +13,7 @@ import fr.adaming.model.Produit;
 
 @Service
 @Transactional
-public class ClientServiceImpl implements ICommanderService {
+public class ClientServiceImpl extends ConsulterServiceImpl implements ICommanderService {
 
 	@Override
 	public Commande consulterCommande(int id_commande) {

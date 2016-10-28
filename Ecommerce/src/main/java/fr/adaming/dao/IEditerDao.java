@@ -9,11 +9,11 @@ public interface IEditerDao {
 
 	public void modifierProduit(Produit p);
 
-	public void supprimerProduit(Produit p);
+	public void supprimerProduit(int id_produit);
 
 	public void ajouterCategorie(Categorie c);
 
 	public void modifierCategorie(Categorie c);
 
-	public void supprimerCategorie(Categorie c);
+	public void supprimerCategorie(int id_categorie);
 }

@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Catégorie</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Accueil</h1>
+		<h1>Affichage catégorie</h1>
 
 
 		<table>
@@ -43,8 +43,6 @@
 			</tr>
 		</table>
 
-		<h1>Catégories</h1>
-
 		<table>
 			<tr bgcolor="grey" style="color: white">
 				<th>ID</th>
@@ -52,24 +50,17 @@
 				<th>Description</th>
 				<th>Edition</th>
 			</tr>
-			<c:forEach var="categ" items="${listeCateg}">
-				<tr>
-					<td>${categ.id_categorie}</td>
-					<td>${categ.nom}</td>
-					<td>${categ.description}</td>
-					<td>
-						<form style="float: left;"
-							action="formModifProd?IdProduit=${prod.id_produit}" method="post">
-							<input type="submit" value="Modifier">
-						</form>
-						<form style="float: right;"
-							action="supprimerProduit?IdProduit=${prod.id_produit}"
-							method="post">
-							<input type="submit" value="Supprimer">
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td>${categ.id_categorie}</td>
+				<td>${categ.nom}</td>
+				<td>${categ.description}</td>
+				<td>
+					<form action="formModifCateg?IdCategorie=${categ.id_categorie}"
+						method="post">
+						<input type="submit" value="Modifier">
+					</form>
+				</td>
+			</tr>
 		</table>
 
 		<br /> <a href="<c:url value="/j_spring_security_logout" />"> Se

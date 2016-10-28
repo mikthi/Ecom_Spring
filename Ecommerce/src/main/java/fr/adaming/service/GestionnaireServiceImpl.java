@@ -34,8 +34,8 @@ public class GestionnaireServiceImpl extends ConsulterServiceImpl implements IEd
 	}
 
 	@Override
-	public void supprimerProduit(Produit p) {
-		gestionnaireDao.supprimerProduit(p);
+	public void supprimerProduit(int id_produit) {
+		gestionnaireDao.supprimerProduit(id_produit);
 
 	}
 
@@ -52,8 +52,8 @@ public class GestionnaireServiceImpl extends ConsulterServiceImpl implements IEd
 	}
 
 	@Override
-	public void supprimerCategorie(Categorie c) {
-		gestionnaireDao.supprimerCategorie(c);
+	public void supprimerCategorie(int id_categorie) {
+		gestionnaireDao.supprimerCategorie(id_categorie);
 
 	}
 

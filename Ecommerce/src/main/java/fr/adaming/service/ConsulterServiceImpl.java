@@ -2,9 +2,11 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IConsulterDao;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Commande;
 import fr.adaming.model.Produit;
@@ -13,6 +15,8 @@ import fr.adaming.model.Produit;
 @Transactional
 public class ConsulterServiceImpl implements IConsulterService {
 	
+	@Autowired
+	IConsulterDao consulterDao;	
 
 	@Override
 	public Commande consulterCommande(int id_commande) {
@@ -22,14 +26,12 @@ public class ConsulterServiceImpl implements IConsulterService {
 
 	@Override
 	public List<Produit> consulterTousLesProduits() {
-		// TODO Auto-generated method stub
-		return null;
+		return consulterDao.consulterTousLesProduits();
 	}
 
 	@Override
 	public List<Categorie> consulterToutesLesCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		return consulterDao.consulterToutesLesCategories();
 	}
 
 	@Override
@@ -49,5 +51,27 @@ public class ConsulterServiceImpl implements IConsulterService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Categorie consulterCategorieParId(int id_categorie) {
+		return consulterDao.consulterCategorieParId(id_categorie);
+	}
+
+	/**
+	 * Setter
+	 */
+	/**
+	 * @param consulterDao the consulterDao to set
+	 */
+	public void setConsulterDao(IConsulterDao consulterDao) {
+		this.consulterDao = consulterDao;
+	}
+
+	@Override
+	public Produit consulterProduitParId(int id_produit) {
+		return consulterDao.consulterProduitParId(id_produit);
+	}
+	
+	
 
 }

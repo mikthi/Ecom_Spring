@@ -1,7 +1,9 @@
 package fr.adaming.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +29,16 @@ public class GestionnaireDaoImpl implements IEditerDao, Serializable{
 
 	@Override
 	public void modifierProduit(Produit p) {
-		// TODO Auto-generated method stub
-
+		Session s = sf.getCurrentSession();
+		s.update(p);
+		
 	}
 
 	@Override
-	public void supprimerProduit(Produit p) {
-		// TODO Auto-generated method stub
+	public void supprimerProduit(int id_produit) {
+		Session s = sf.getCurrentSession();
+		Produit p = (Produit) s.get(Produit.class, id_produit);
+		s.delete(p);
 
 	}
 
@@ -46,13 +51,17 @@ public class GestionnaireDaoImpl implements IEditerDao, Serializable{
 
 	@Override
 	public void modifierCategorie(Categorie c) {
-		// TODO Auto-generated method stub
+		Session s = sf.getCurrentSession();
+		s.update(c);
 
 	}
 
 	@Override
-	public void supprimerCategorie(Categorie c) {
-		// TODO Auto-generated method stub
+	public void supprimerCategorie(int id_categorie) {
+		Session s = sf.getCurrentSession();
+		Categorie c = (Categorie) s.get(Categorie.class, id_categorie);
+		s.delete(c);
+
 
 	}
 

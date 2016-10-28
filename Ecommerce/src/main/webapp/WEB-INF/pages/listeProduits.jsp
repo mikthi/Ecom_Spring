@@ -6,12 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Produits</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Accueil</h1>
-
 
 		<table>
 			<tr>
@@ -42,21 +40,25 @@
 				</td>
 			</tr>
 		</table>
-
-		<h1>Catégories</h1>
+		
+		<h1>Affichage des produits</h1>
 
 		<table>
 			<tr bgcolor="grey" style="color: white">
 				<th>ID</th>
+				<th>Catégorie</th>
 				<th>Nom</th>
 				<th>Description</th>
+				<th>Prix</th>
 				<th>Edition</th>
 			</tr>
-			<c:forEach var="categ" items="${listeCateg}">
+			<c:forEach var="prod" items="${listeProd}">
 				<tr>
-					<td>${categ.id_categorie}</td>
-					<td>${categ.nom}</td>
-					<td>${categ.description}</td>
+					<td>${prod.id_produit}</td>
+					<td>${prod.categorie.nom}</td>
+					<td>${prod.nom}</td>
+					<td>${prod.description}</td>
+					<td>${prod.prix}</td>
 					<td>
 						<form style="float: left;"
 							action="formModifProd?IdProduit=${prod.id_produit}" method="post">

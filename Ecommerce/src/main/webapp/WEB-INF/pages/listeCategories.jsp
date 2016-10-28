@@ -6,12 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Catégories</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Accueil</h1>
-
 
 		<table>
 			<tr>
@@ -42,8 +40,8 @@
 				</td>
 			</tr>
 		</table>
-
-		<h1>Catégories</h1>
+		
+		<h1>Affichage des catégories</h1>
 
 		<table>
 			<tr bgcolor="grey" style="color: white">
@@ -59,11 +57,12 @@
 					<td>${categ.description}</td>
 					<td>
 						<form style="float: left;"
-							action="formModifProd?IdProduit=${prod.id_produit}" method="post">
+							action="formModifCateg?IdCategorie=${categ.id_categorie}"
+							method="post">
 							<input type="submit" value="Modifier">
 						</form>
 						<form style="float: right;"
-							action="supprimerProduit?IdProduit=${prod.id_produit}"
+							action="supprimerCategorie?IdCategorie=${categ.id_categorie}"
 							method="post">
 							<input type="submit" value="Supprimer">
 						</form>
@@ -76,5 +75,6 @@
 			deconnecter</a>
 
 	</div>
+
 </body>
 </html>

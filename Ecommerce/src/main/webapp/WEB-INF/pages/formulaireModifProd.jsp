@@ -8,55 +8,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Modification produit</title>
 </head>
 <body>
 <body>
 	<div align="center">
+		<h2>Produit à modifier</h2>
 
-		<table>
-			<tr>
-				<td>
-					<form action="formAjoutCateg">
-						<input type="submit" value="Ajouter Catégorie">
-					</form>
-				</td>
-				<td>
-					<form action="formAjoutProd">
-						<input type="submit" value="Ajouter Produit">
-					</form>
-				</td>
-				<td>
-					<form action="">
-						<input type="submit" value="Rechercher Produit">
-					</form>
-				</td>
-				<td align="right">
-					<form action="listeCategories">
-						<input type="submit" value="Afficher Catégories">
-					</form>
-				</td>
-				<td>
-					<form action="listeProduits">
-						<input type="submit" value="Afficher Produits">
-					</form>
-				</td>
-			</tr>
-		</table>
 
-		<h1>Produit à ajouter</h1>
-
-		<form:form method="post" action="ajouterProduit" modelAttribute="prod">
+		<form:form method="post" action="modifierProduit"
+			modelAttribute="prod">
 			<table>
 				<tr>
+					<td><form:input type="hidden" path="id_produit" /></td>
 					<td><form:label path="nom" />Nom :</td>
 					<td><form:input path="nom" /></td>
 					<td><form:label path="description" />Description :</td>
 					<td><form:input path="description" /></td>
 					<td><form:label path="prix" />Prix :</td>
 					<td><form:input path="prix" /></td>
-					<td><form:label path="categorie.id_categorie" />Catégorie :</td>
+					<td><form:label path="categorie.id_categorie" />ID_catégorie
+						:</td>
 					<td><form:input path="categorie.id_categorie" /></td>
+					<td><form:input type="hidden" path="id_produit" /></td>
 				</tr>
 			</table>
 			<br />

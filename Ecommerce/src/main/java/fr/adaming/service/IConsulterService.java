@@ -21,5 +21,9 @@ public interface IConsulterService {
 	public Produit consulterProduitSelectionne(int id_produit);
 
 	public List<Produit> chercherProduitsParMotCle(String s);
+	
+	public Categorie consulterCategorieParId(int id_categorie);
+	
+	public Produit consulterProduitParId(int id_produit);
 
 }
