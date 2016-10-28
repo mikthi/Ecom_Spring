@@ -21,20 +21,21 @@
 	</bean>
 
 	<security:http>
-<!-- configuration de l'autorisation d'acces -->
+		<!-- configuration de l'autorisation d'acces -->
 		<security:intercept-url pattern="/gestionnaire/*"
 			access="ROLE_ADMIN" />
 		<security:form-login login-page="/login"
-			default-target-url="/gestionnaire/affichage" authentication-failure-url="/login" />
+			default-target-url="/gestionnaire/affichage"
+			authentication-failure-url="/login" />
 		<security:logout logout-success-url="/logout" />
 	</security:http>
-<!-- configuration de l'authentification -->
+	<!-- configuration de l'authentification -->
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBean1"
-				users-by-username-query="select nom,prenom,password,activated from gestionnaires where nom=? and prenom=?"
-				authorities-by-username-query="select g.nom, g.prenom, r.rolename from gestionnaires g, roles r where g.id_gestionnaire=r.id_gestionnaire and g.nom=? and g.prenom=?" />
+				users-by-username-query="select nom,password,activated from gestionnaires where nom=?"
+				authorities-by-username-query="select g.nom, r.rolename from gestionnaires g, roles r where g.id_gestionnaire=r.id_gestionnaire and g.nom=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 

@@ -1,59 +1,71 @@
 package fr.adaming.service;
 
-import java.util.List;
+import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IEditerDao;
 import fr.adaming.model.Categorie;
-import fr.adaming.model.Gestionnaire;
 import fr.adaming.model.Produit;
 
 @Service
 @Transactional
-public class GestionnaireServiceImpl implements IEditerDao {
+public class GestionnaireServiceImpl extends ConsulterServiceImpl implements IEditerService, Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	IEditerDao gestionnaireDao;
 
 	@Override
 	public void ajouterProduit(Produit p) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.ajouterProduit(p);
 
 	}
 
 	@Override
 	public void modifierProduit(Produit p) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.modifierProduit(p);
 
 	}
 
 	@Override
 	public void supprimerProduit(Produit p) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.supprimerProduit(p);
 
 	}
 
 	@Override
 	public void ajouterCategorie(Categorie c) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.ajouterCategorie(c);
 
 	}
 
 	@Override
 	public void modifierCategorie(Categorie c) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.modifierCategorie(c);
 
 	}
 
 	@Override
 	public void supprimerCategorie(Categorie c) {
-		// TODO Auto-generated method stub
+		gestionnaireDao.supprimerCategorie(c);
 
 	}
 
-	@Override
-	public List<Gestionnaire> isExistGestionnaireDao(String nom, String prenom, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Getters et Setters
+	 */
+	/**
+	 * @param gestionnaireDao
+	 *            the gestionnaireDao to set
+	 */
+	public void setGestionnaireDao(IEditerDao gestionnaireDao) {
+		this.gestionnaireDao = gestionnaireDao;
 	}
 
 }
