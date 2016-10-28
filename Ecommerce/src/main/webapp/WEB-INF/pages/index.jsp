@@ -11,7 +11,7 @@
 	<div align="center">
 		<h1>Accueil</h1>
 
-		<form action="client">
+		<form action="client/index">
 			<input type="submit" value="Client" >
 		</form>
 		<form action="gestionnaire/accueil">
