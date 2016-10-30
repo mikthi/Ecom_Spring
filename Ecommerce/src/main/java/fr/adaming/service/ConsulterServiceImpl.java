@@ -47,9 +47,8 @@ public class ConsulterServiceImpl implements IConsulterService {
 	}
 
 	@Override
-	public List<Produit> chercherProduitsParMotCle(String s) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Produit> chercherProduitsParMotCle(String motCle) {
+		return consulterDao.chercherProduitsParMotCle(motCle);
 	}
 
 	@Override

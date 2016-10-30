@@ -27,8 +27,9 @@
 					</form>
 				</td>
 				<td>
-					<form action="">
-						<input type="submit" value="Rechercher Produit">
+					<form action="chercherProduit" method="post">
+						<input type="text" name="motCle"> 
+						<input type="submit" value="Chercher">
 					</form>
 				</td>
 				<td align="right">

@@ -2,12 +2,15 @@ package fr.adaming.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
@@ -54,8 +57,7 @@ public class GestionnaireController {
 	}
 
 	/**
-	 * Corps de l'affichage de la récupération du formulaire et de l'ajout du
-	 * produit
+	 * Corps de la récupération du formulaire et de l'ajout du produit
 	 */
 	@RequestMapping(value = "/ajouterProduit", method = RequestMethod.POST)
 	public String ajouterProduit(@ModelAttribute("prod") Produit produit, ModelMap model) {
@@ -75,8 +77,7 @@ public class GestionnaireController {
 	}
 
 	/**
-	 * Corps de l'affichage de la récupération du formulaire et de l'ajout de la
-	 * catégorie
+	 * Corps de la récupération du formulaire et de l'ajout de la catégorie
 	 */
 	@RequestMapping(value = "/ajouterCategorie", method = RequestMethod.POST)
 	public String ajouterCategorie(@ModelAttribute("categ") Categorie categorie, ModelMap model) {
@@ -98,8 +99,8 @@ public class GestionnaireController {
 	}
 
 	/**
-	 * Corps de l'affichage de la récupération du formulaire et de la
-	 * modification de la catégorie
+	 * Corps de la récupération du formulaire et de la modification de la
+	 * catégorie
 	 */
 	@RequestMapping(value = "/modifierCategorie", method = RequestMethod.POST)
 	public String modifierCategorie(@ModelAttribute("categ") Categorie categorie, ModelMap model) {
@@ -145,8 +146,7 @@ public class GestionnaireController {
 	}
 
 	/**
-	 * Corps de l'affichage de la récupération du formulaire et de la
-	 * modification du produit
+	 * Corps de la récupération du formulaire et de la modification du produit
 	 */
 	@RequestMapping(value = "/modifierProduit", method = RequestMethod.POST)
 	public String modifierProduit(@ModelAttribute("prod") Produit produit, ModelMap model) {
@@ -156,7 +156,7 @@ public class GestionnaireController {
 		model.addAttribute("prod", prod);
 		return "affichageProduitParId";
 	}
-	
+
 	/**
 	 * Corps de la suppression du produit
 	 */
@@ -168,7 +168,7 @@ public class GestionnaireController {
 		model.addAttribute("listeProd", listeProduits);
 		return "listeProduits";
 	}
-	
+
 	/**
 	 * Corps de la suppression d'une catégorie
 	 */
@@ -179,6 +179,17 @@ public class GestionnaireController {
 		List<Categorie> listeCategories = gestionnaireService.consulterToutesLesCategories();
 		model.addAttribute("listeCateg", listeCategories);
 		return "listeCategories";
+	}
+
+	/**
+	 * Corps de la recherche d'un produit par mot-clef
+	 */
+	@RequestMapping(value = "/chercherProduit", method = RequestMethod.POST)
+	public String chercherProduit(String motCle, HttpServletRequest request, ModelMap model) {
+		request.getParameter(motCle);
+		List<Produit> listeProduitsCherches = gestionnaireService.chercherProduitsParMotCle(motCle);
+		model.addAttribute("listeProd", listeProduitsCherches);
+		return "listeProduits";
 	}
 
 }

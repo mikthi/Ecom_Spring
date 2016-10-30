@@ -61,9 +61,16 @@ public class ConsulterDaoImpl implements IConsulterDao {
 	}
 
 	@Override
-	public List<Produit> chercherProduitsParMotCle(String s) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Produit> chercherProduitsParMotCle(String motCle) {
+		Session s = sf.getCurrentSession();
+
+		String req = "SELECT p FROM Produit p WHERE p.nom like:kw or p.description like:kw";
+		Query query = s.createQuery(req);
+		query.setParameter("kw", "%" + motCle + "%");
+		@SuppressWarnings("unchecked")
+		List<Produit> listeProduits = query.list();
+
+		return listeProduits;
 	}
 	
 	@Override

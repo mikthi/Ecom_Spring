@@ -18,7 +18,7 @@ public interface IConsulterDao {
 
 	public Produit consulterProduitSelectionne(int id_produit);
 
-	public List<Produit> chercherProduitsParMotCle(String s);
+	public List<Produit> chercherProduitsParMotCle(String motCle);
 	
 	public Categorie consulterCategorieParId(int id_categorie);
 

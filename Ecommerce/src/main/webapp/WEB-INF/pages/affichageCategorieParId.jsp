@@ -10,8 +10,6 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Affichage catégorie</h1>
-
 
 		<table>
 			<tr>
@@ -26,8 +24,9 @@
 					</form>
 				</td>
 				<td>
-					<form action="">
-						<input type="submit" value="Rechercher Produit">
+					<form action="chercherProduit" method="post">
+						<input type="text" name="motCle"> 
+						<input type="submit" value="Chercher">
 					</form>
 				</td>
 				<td align="right">
@@ -42,6 +41,8 @@
 				</td>
 			</tr>
 		</table>
+
+		<h1>Affichage de la catégorie modifiée</h1>
 
 		<table>
 			<tr bgcolor="grey" style="color: white">
@@ -63,7 +64,8 @@
 			</tr>
 		</table>
 
-		<br /> <a href="<c:url value="/j_spring_security_logout" />"> Se
+		<br /> <br /> <br /> <a
+			href="<c:url value="/j_spring_security_logout" />"> Se
 			deconnecter</a>
 
 	</div>
