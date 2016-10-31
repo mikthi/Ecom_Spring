@@ -6,54 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Produit</title>
+<title>Produit modifié</title>
 </head>
 <body>
-	<div align="center">
+	<%@include file="template/header.jsp"%>
 
-		<table>
-			<tr>
-				<td>
-					<form action="formAjoutCateg">
-						<input type="submit" value="Ajouter Catégorie">
-					</form>
-				</td>
-				<td>
-					<form action="formAjoutProd">
-						<input type="submit" value="Ajouter Produit">
-					</form>
-				</td>
-				<td>
-					<form action="chercherProduit" method="post">
-						<input type="text" name="motCle"> 
-						<input type="submit" value="Chercher">
-					</form>
-				</td>
-				<td align="right">
-					<form action="listeCategories">
-						<input type="submit" value="Afficher Catégories">
-					</form>
-				</td>
-				<td>
-					<form action="listeProduits">
-						<input type="submit" value="Afficher Produits">
-					</form>
-				</td>
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Affichage
+			du produit modifié</h2>
+			<br />
+
+		<table class="table table-hover">
+			<tr bgcolor="grey" style="color: white" align="center">
+				<td style="font-weight: bold;">ID</td>
+				<td style="font-weight: bold;">Catégorie</td>
+				<td style="font-weight: bold;">Nom</td>
+				<td style="font-weight: bold;">Description</td>
+				<td style="font-weight: bold;">Prix</td>
+				<td style="font-weight: bold;">Edition</td>
 			</tr>
-		</table>
-
-		<h1>Affichage du produit modifié</h1>
-
-		<table>
-			<tr bgcolor="grey" style="color: white">
-				<th>ID</th>
-				<th>Catégorie</th>
-				<th>Nom</th>
-				<th>Description</th>
-				<th>Prix</th>
-				<th>Edition</th>
-			</tr>
-			<tr>
+			<tr align="center">
 				<td>${prod.id_produit}</td>
 				<td>${prod.categorie.nom}</td>
 				<td>${prod.nom}</td>
@@ -62,13 +34,13 @@
 				<td>
 					<form action="formModifProd?IdProduit=${prod.id_produit}"
 						method="post">
-						<input type="submit" value="Modifier">
+						<button type="submit" class="btn btn-warning btn-lg">Modifier</button>
 					</form>
 				</td>
 			</tr>
 		</table>
 
-		<br /> <br /> <br /> <a
+		<br /> <a style="float: right;"
 			href="<c:url value="/j_spring_security_logout" />"> Se
 			deconnecter</a>
 

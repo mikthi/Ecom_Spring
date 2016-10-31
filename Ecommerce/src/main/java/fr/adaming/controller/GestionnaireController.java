@@ -10,7 +10,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
@@ -51,8 +50,9 @@ public class GestionnaireController {
 	 */
 	@RequestMapping(value = "/formAjoutProd", method = RequestMethod.GET)
 	public String afficherFormAjoutProd(ModelMap model) {
-
+		List<Categorie> listCateg = gestionnaireService.consulterToutesLesCategories();
 		model.addAttribute("prod", new Produit());
+		model.addAttribute("listCateg", listCateg);
 		return "formulaireAjoutProd";
 	}
 
@@ -61,8 +61,9 @@ public class GestionnaireController {
 	 */
 	@RequestMapping(value = "/ajouterProduit", method = RequestMethod.POST)
 	public String ajouterProduit(@ModelAttribute("prod") Produit produit, ModelMap model) {
-
+		List<Categorie> listCateg = gestionnaireService.consulterToutesLesCategories();		
 		gestionnaireService.ajouterProduit(produit);
+		model.addAttribute("listCateg", listCateg);
 		return "formulaireAjoutProd";
 	}
 
@@ -139,8 +140,10 @@ public class GestionnaireController {
 	@RequestMapping(value = "/formModifProd", method = RequestMethod.POST)
 	public String afficherFormModifProd(int IdProduit, ModelMap model) {
 
+		List<Categorie> listCateg = gestionnaireService.consulterToutesLesCategories();
 		Produit prod = this.gestionnaireService.consulterProduitParId(IdProduit);
 		model.addAttribute("prod", prod);
+		model.addAttribute("listCateg", listCateg);
 		return "formulaireModifProd";
 
 	}

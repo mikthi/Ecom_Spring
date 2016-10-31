@@ -8,62 +8,58 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ajout produit</title>
 </head>
+
 <body>
-<body>
-	<div align="center">
+	<%@include file="template/header.jsp"%>
 
-		<table>
-			<tr>
-				<td>
-					<form action="formAjoutCateg">
-						<input type="submit" value="Ajouter Catégorie">
-					</form>
-				</td>
-				<td>
-					<form action="formAjoutProd">
-						<input type="submit" value="Ajouter Produit">
-					</form>
-				</td>
-				<td>
-					<form action="chercherProduit" method="post">
-						<input type="text" name="motCle"> 
-						<input type="submit" value="Chercher">
-					</form>
-				</td>
-				<td align="right">
-					<form action="listeCategories">
-						<input type="submit" value="Afficher Catégories">
-					</form>
-				</td>
-				<td>
-					<form action="listeProduits">
-						<input type="submit" value="Afficher Produits">
-					</form>
-				</td>
-			</tr>
-		</table>
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Produit à
+			ajouter</h2>
+		<br />
 
-		<h1>Produit à ajouter</h1>
-
-		<form:form method="post" action="ajouterProduit" modelAttribute="prod">
+		<form:form class="form-inline" method="post" action="ajouterProduit"
+			modelAttribute="prod">
 			<table>
 				<tr>
-					<td><form:label path="nom" />Nom :</td>
-					<td><form:input path="nom" /></td>
-					<td><form:label path="description" />Description :</td>
-					<td><form:input path="description" /></td>
-					<td><form:label path="prix" />Prix :</td>
-					<td><form:input path="prix" /></td>
-					<td><form:label path="categorie.id_categorie" />Catégorie :</td>
-					<td><form:input path="categorie.id_categorie" /></td>
+					<td><form:label for="nom" path="nom" />Nom :&nbsp;</td>
+					<td><form:input type="text" id="nom" class="form-control"
+							path="nom" /></td>
 				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="description" path="description" />Description
+						:&nbsp;</td>
+					<td><form:input type="text" id="description"
+							class="form-control" path="description" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="prix" path="prix" />Prix :&nbsp;</td>
+					<td><form:input type="text" id="prix" class="form-control"
+							path="prix" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="IdCategorie"
+							path="categorie.id_categorie" />Catégorie :&nbsp;</td>
+					<td><form:select id="IdCategorie" class="form-control" path="categorie.id_categorie" >
+							<c:forEach var="categ" items="${listCateg}">
+								<form:option value="${categ.id_categorie}">${categ.nom}</form:option>
+							</c:forEach>
+						</form:select></td>
+				</tr>
+
 			</table>
 			<br />
-			<br />
-			<br />
-			<input type="submit" value="Valider" />
+			<button type="submit" class="btn btn-warning btn-lg">Valider</button>
 		</form:form>
 
 	</div>

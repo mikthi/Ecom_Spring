@@ -12,31 +12,54 @@
 </head>
 <body>
 <body>
-	<div align="center">
-		<h2>Produit à modifier</h2>
+	<%@include file="template/header.jsp"%>
 
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Produit à
+			modifier</h2>
+		<br />
 
 		<form:form method="post" action="modifierProduit"
 			modelAttribute="prod">
 			<table>
 				<tr>
+					<td><form:label for="nom" path="nom" />Nom :&nbsp;</td>
+					<td><form:input type="text" id="nom" class="form-control"
+							path="nom" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="description" path="description" />Description
+						:&nbsp;</td>
+					<td><form:input type="text" id="description"
+							class="form-control" path="description" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="prix" path="prix" />Prix :&nbsp;</td>
+					<td><form:input type="text" id="prix" class="form-control"
+							path="prix" /></td>
 					<td><form:input type="hidden" path="id_produit" /></td>
-					<td><form:label path="nom" />Nom :</td>
-					<td><form:input path="nom" /></td>
-					<td><form:label path="description" />Description :</td>
-					<td><form:input path="description" /></td>
-					<td><form:label path="prix" />Prix :</td>
-					<td><form:input path="prix" /></td>
-					<td><form:label path="categorie.id_categorie" />ID_catégorie
-						:</td>
-					<td><form:input path="categorie.id_categorie" /></td>
-					<td><form:input type="hidden" path="id_produit" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="IdCategorie"
+							path="categorie.id_categorie" />Catégorie :&nbsp;</td>
+					<td><form:select id="IdCategorie" class="form-control" path="categorie.id_categorie" >
+							<c:forEach var="categ" items="${listCateg}">
+								<form:option value="${categ.id_categorie}">${categ.nom}</form:option>
+							</c:forEach>
+						</form:select></td>
 				</tr>
 			</table>
 			<br />
-			<br />
-			<br />
-			<input type="submit" value="Valider" />
+			<button type="submit" class="btn btn-warning btn-lg">Valider</button>
 		</form:form>
 
 	</div>

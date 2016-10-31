@@ -1,82 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<!-- 	Taglib Spring form -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!-- 	Taglib JSTL -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="<c:url value='/resources/css/bootstrap.css' />"
+	rel="stylesheet" />
+<script src="<c:url value='/resources/js/jquery-3.1.1.js' />"></script>
+<script src="<c:url value='/resources/js/bootstrap.js' />"></script>
+<script src="<c:url value='/resources/js/npm.js' />"></script>
+
+<title>Accueil Gestionnaire</title>
 </head>
+
 <body>
-	<div align="center">
-		<table>
-			<tr>
-				<td>
-					<form action="formAjoutCateg">
-						<input type="submit" value="Ajouter Catégorie">
-					</form>
-				</td>
-				<td>
-					<form action="formAjoutProd">
-						<input type="submit" value="Ajouter Produit">
-					</form>
-				</td>
-				<td>
-					<form action="chercherProduit" method="post">
-						<input type="text" name="motCle"> 
-						<input type="submit" value="Chercher">
-					</form>
-				</td>
-				<td align="right">
-					<form action="listeCategories">
-						<input type="submit" value="Afficher Catégories">
-					</form>
-				</td>
-				<td>
-					<form action="listeProduits">
-						<input type="submit" value="Afficher Produits">
-					</form>
-				</td>
-			</tr>
-		</table>
+	<%@include file="template/header.jsp"%>
 
-		<h1>Affichage des catégories</h1>
-
-		<table>
-			<tr bgcolor="grey" style="color: white">
-				<th>ID</th>
-				<th>Nom</th>
-				<th>Description</th>
-				<th>Edition</th>
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Affichage
+			des catégories</h2>
+		<br />
+		<table class="table table-hover">
+			<tr bgcolor="grey" style="color: white" align="center">
+				<td style="font-weight: bold;">ID</td>
+				<td style="font-weight: bold;">Nom</td>
+				<td style="font-weight: bold;">Description</td>
+				<td class="col-md-2" colspan="2" style="font-weight: bold;">Edition</td>
 			</tr>
 			<c:forEach var="categ" items="${listeCateg}">
-				<tr>
+				<tr align="center">
 					<td>${categ.id_categorie}</td>
 					<td>${categ.nom}</td>
 					<td>${categ.description}</td>
 					<td>
-						<form style="float: left;"
-							action="formModifProd?IdProduit=${prod.id_produit}" method="post">
-							<input type="submit" value="Modifier">
-						</form>
-						<form style="float: right;"
-							action="supprimerProduit?IdProduit=${prod.id_produit}"
+						<form action="formModifCateg?IdCategorie=${categ.id_categorie}"
 							method="post">
-							<input type="submit" value="Supprimer">
+							<button type="submit" class="btn btn-warning btn-lg">Modifier</button>
+						</form>
+					</td>
+					<td>
+						<form action="supprimerCategorie?IdCategorie=${categ.id_categorie}"
+							method="post">
+							<button type="submit" class="btn btn-warning btn-lg">Supprimer</button>
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 
-		<br /> <br /> <br /> <a
+		<br /> <br /> <br /> <br /> <a style="float: right;"
 			href="<c:url value="/j_spring_security_logout" />"> Se
 			deconnecter</a>
-
 	</div>
+
 </body>
 </html>

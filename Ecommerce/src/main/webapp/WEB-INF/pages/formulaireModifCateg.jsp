@@ -10,26 +10,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Modification catégorie</title>
 </head>
-<body>
-<body>
-	<div align="center">
-		<h2>Catégorie à modifier</h2>
 
-		<form:form method="post" action="modifierCategorie"
-			modelAttribute="categ">
+<body>
+	<%@include file="template/header.jsp"%>
+
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Catégorie à
+			modifier</h2>
+		<br />
+
+		<form:form class="form-inline" method="post"
+			action="modifierCategorie" modelAttribute="categ">
 			<table>
 				<tr>
-					<td><form:label path="nom" />Nom :</td>
-					<td><form:input path="nom" /></td>
-					<td><form:label path="description" />Description :</td>
-					<td><form:input path="description" /></td>
+					<td><form:label for="nom" path="nom" />Nom :&nbsp;</td>
+					<td><form:input type="text" id="nom" class="form-control"
+							path="nom" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><form:label for="description" path="description" />Description
+						:&nbsp;</td>
+					<td><form:input type="text" id="description"
+							class="form-control" path="description" /></td>
 					<td><form:input type="hidden" path="id_categorie" /></td>
 				</tr>
 			</table>
 			<br />
-			<br />
-			<br />
-			<input type="submit" value="Valider" />
+			<button type="submit" class="btn btn-warning btn-lg">Valider</button>
 		</form:form>
 
 	</div>
