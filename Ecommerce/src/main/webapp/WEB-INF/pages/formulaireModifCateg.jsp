@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!-- 	Taglib JSTL -->
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- 	Taglib Spring form -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Modification catégorie</title>
 </head>
 
@@ -26,6 +21,7 @@
 					<td><form:label for="nom" path="nom" />Nom :&nbsp;</td>
 					<td><form:input type="text" id="nom" class="form-control"
 							path="nom" /></td>
+					<td><form:errors cssClass="errors" path="nom" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -35,6 +31,7 @@
 						:&nbsp;</td>
 					<td><form:input type="text" id="description"
 							class="form-control" path="description" /></td>
+					<td><form:errors cssClass="errors" path="description" /></td>
 					<td><form:input type="hidden" path="id_categorie" /></td>
 				</tr>
 			</table>
@@ -45,6 +42,5 @@
 	</div>
 
 </body>
-
 
 </html>

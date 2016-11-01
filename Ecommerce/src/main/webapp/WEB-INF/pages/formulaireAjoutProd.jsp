@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!-- 	Taglib JSTL -->
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- 	Taglib Spring form -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajout produit</title>
 </head>
 
@@ -26,6 +21,7 @@
 					<td><form:label for="nom" path="nom" />Nom :&nbsp;</td>
 					<td><form:input type="text" id="nom" class="form-control"
 							path="nom" /></td>
+					<td><form:errors cssClass="errors" path="nom" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -35,6 +31,7 @@
 						:&nbsp;</td>
 					<td><form:input type="text" id="description"
 							class="form-control" path="description" /></td>
+					<td><form:errors cssClass="errors" path="description" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -50,7 +47,8 @@
 				<tr>
 					<td><form:label for="IdCategorie"
 							path="categorie.id_categorie" />Catégorie :&nbsp;</td>
-					<td><form:select id="IdCategorie" class="form-control" path="categorie.id_categorie" >
+					<td><form:select id="IdCategorie" class="form-control"
+							path="categorie.id_categorie">
 							<c:forEach var="categ" items="${listCateg}">
 								<form:option value="${categ.id_categorie}">${categ.nom}</form:option>
 							</c:forEach>
@@ -65,6 +63,5 @@
 	</div>
 
 </body>
-
 
 </html>
