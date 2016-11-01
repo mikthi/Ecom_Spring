@@ -5,12 +5,18 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.Map;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author inti0210
@@ -28,13 +34,34 @@ public class Commande implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_commande;
+	@Temporal(TemporalType.DATE)
 	private Date dateCommande;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_client", referencedColumnName = "id_client")
+	Client client;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private Map<Integer,Integer> produitCommande;
 
 	/**
 	 * Constructeur vide
 	 */
 	public Commande() {
 		super();
+		client= new Client();
+		dateCommande= new Date();
+		
+
+	}
+
+	/**
+	 * @param dateCommande
+	 * @param client
+	 */
+	public Commande(Date dateCommande, Client client) {
+		super();
+		this.dateCommande = dateCommande;
+		this.client = client;
 	}
 
 	/**
@@ -77,11 +104,40 @@ public class Commande implements Serializable {
 		this.id_commande = id_commande;
 	}
 
+
+	/**
+	 * @return the client
+	 */
+	public Client getClient() {
+		return client;
+	}
+
+	/**
+	 * @param client the client to set
+	 */
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	/**
 	 * @return the dateCommande
 	 */
 	public Date getDateCommande() {
 		return dateCommande;
+	}
+
+	/**
+	 * @return the produitCommande
+	 */
+	public Map<Integer, Integer> getProduitCommande() {
+		return produitCommande;
+	}
+
+	/**
+	 * @param produitCommande the produitCommande to set
+	 */
+	public void setProduitCommande(Map<Integer, Integer> produitCommande) {
+		this.produitCommande = produitCommande;
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class Produit implements Serializable {
 	private int id_produit;
 	private String nom;
 	private String description;
-	private float prix;
+	private double prix;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categorie", referencedColumnName = "id_categorie")
@@ -126,7 +126,7 @@ public class Produit implements Serializable {
 	/**
 	 * @return the prix
 	 */
-	public float getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
@@ -134,7 +134,7 @@ public class Produit implements Serializable {
 	 * @param prix
 	 *            the prix to set
 	 */
-	public void setPrix(float prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 

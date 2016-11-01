@@ -3,9 +3,8 @@
  */
 package fr.adaming.model;
 
-import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,20 +12,19 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class Panier implements Serializable {
+public class Panier {
 
-	/**
-	 * Attributs
-	 */
-	private static final long serialVersionUID = 1L;
 
-	private Map<Produit, Integer> produitCommande;
+	private Map<Integer, Integer> produitCommande;
+	private double montantTotalPanier;
+	private int quantiteProdSelectionneACommander;
 
 	/**
 	 * Constructeur vide
 	 */
 	public Panier() {
 		super();
+		produitCommande= new HashMap<Integer,Integer>();
 	}
 
 	/**
@@ -34,7 +32,7 @@ public class Panier implements Serializable {
 	 * 
 	 * @param produitCommande
 	 */
-	public Panier(Map<Produit, Integer> produitCommande) {
+	public Panier(Map<Integer, Integer> produitCommande) {
 		super();
 		this.produitCommande = produitCommande;
 	}
@@ -45,7 +43,7 @@ public class Panier implements Serializable {
 	/**
 	 * @return the produitCommande
 	 */
-	public Map<Produit, Integer> getProduitCommande() {
+	public Map<Integer, Integer> getProduitCommande() {
 		return produitCommande;
 	}
 
@@ -53,8 +51,36 @@ public class Panier implements Serializable {
 	 * @param produitCommande
 	 *            the produitCommande to set
 	 */
-	public void setProduitCommande(Map<Produit, Integer> produitCommande) {
+	public void setProduitCommande(Map<Integer, Integer> produitCommande) {
 		this.produitCommande = produitCommande;
+	}
+
+	/**
+	 * @return the montantTotalPanier
+	 */
+	public double getMontantTotalPanier() {
+		return montantTotalPanier;
+	}
+
+	/**
+	 * @return the quantiteProdSelectionneACommander
+	 */
+	public int getQuantiteProdSelectionneACommander() {
+		return quantiteProdSelectionneACommander;
+	}
+
+	/**
+	 * @param quantiteProdSelectionneACommander the quantiteProdSelectionneACommander to set
+	 */
+	public void setQuantiteProdSelectionneACommander(int quantiteProdSelectionneACommander) {
+		this.quantiteProdSelectionneACommander = quantiteProdSelectionneACommander;
+	}
+
+	/**
+	 * @param montantTotalPanier the montantTotalPanier to set
+	 */
+	public void setMontantTotalPanier(double montantTotalPanier) {
+		this.montantTotalPanier = montantTotalPanier;
 	}
 
 	/**
