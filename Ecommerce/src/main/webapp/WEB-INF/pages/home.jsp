@@ -28,7 +28,7 @@
 					<button class="btn btn-default btn-sm dropdown-toggle"
 						type="button" id="dropdownMenu1" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="true">
-						Liste des catégories <span class="caret"></span>
+						Filtrer par catégorie <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
