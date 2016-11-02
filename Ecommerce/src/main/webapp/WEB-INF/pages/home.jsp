@@ -43,10 +43,24 @@
 			</td>
 			<td>
 				<div>
-					<a href="formInterrogFacture" class="btn btn-default btn-sm"
-						type="button"> Facture</a> <a href="consulterPanier"
-						class="btn btn-default btn-sm glyphicon glyphicon-shopping-cart"
-						type="button"> Panier </a>
+
+					<form action="chercherProduit" method="post">
+						<table>
+							<tr>
+								<td><a href="formInterrogFacture"
+									class="btn btn-default btn-sm" type="button"> Facture</a></td>
+								<td><a href="consulterPanier"
+									class="btn btn-default btn-sm glyphicon glyphicon-shopping-cart"
+									type="button"> Panier </a></td>
+								<td><input type="text" name="motCle" class="form-control"></td>
+								<td>
+									<button type="submit" class="btn btn-default btn-lg">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
+					</form>
 
 				</div>
 			</td>

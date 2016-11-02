@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
+import fr.adaming.service.ClientServiceImpl;
 import fr.adaming.service.ICommanderService;
 
 @Controller
@@ -88,6 +91,27 @@ public class ClientController {
 		model.addAttribute("panier", new Panier());
 		return "consulterproduit";
 	}
+	
+	
+	/**
+	 * Corps de la recherche d'un produit par mot-clef
+	 */
+	@RequestMapping(value = "/chercherProduit", method = RequestMethod.POST)
+	public String chercherProduit(String motCle, HttpServletRequest request, ModelMap model) {
+		request.getParameter(motCle);
+		List<Produit> listeProduitsCherches = commanderService.chercherProduitsParMotCle(motCle);
+		model.addAttribute("listeCateg", commanderService.consulterToutesLesCategories());
+		if (listeProduitsCherches.size() == 0) {
+			model.addAttribute("listeProd", commanderService.consulterTousLesProduits());
+			
+		} else {
+			model.addAttribute("listeProd", listeProduitsCherches);
+		
+		}
+		return "home";
+	}
+	
+	
 	/***
 	 * ajout du produit dans un objet panier mis en session
 	 * @param panier
