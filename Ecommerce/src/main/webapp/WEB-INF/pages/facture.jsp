@@ -18,13 +18,15 @@
 </head>
 <body>
 
-	<h1 align="center">Facture</h1>
+	<h1 align="center">Votre facture du ${com.dateCommande }</h1>
 
 
 
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
-		<div align="center" class="panel-heading">Commande n°${com.id_commande}</div>
+		<div align="center" class="panel-heading">référence de la commande : ${com.id_commande} <br/> <strong>Contact :</strong> <br/>Mail :  ${com.client.mail},<br/> Telephone :  ${com.client.telephone} <br/> 
+			<strong>Adresse :</strong> <br/> rue : ${com.client.voie }<br/> ville : ${com.client.ville } ${com.client.codePostal }
+		</div>
 
 		<!-- Table -->
 		<table align="center" class="table">

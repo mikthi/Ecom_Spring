@@ -162,13 +162,11 @@ public class ClientController {
 	{
 		double montantTotal=0;
 		com =commanderService.consulterCommande(com.getId_commande());
-		System.out.println(com.toString());
-		System.out.println(com.getProduitCommande().size());
+		System.out.println(com.getClient().toString());
 		List<Produit> listeProduit = new ArrayList<>();
 		Set<Integer> listeClePanier = com.getProduitCommande().keySet();
 		Iterator<Integer> iterator = listeClePanier.iterator();
 		while(iterator.hasNext()){
-			
 			Produit prod=commanderService.consulterProduitParId(iterator.next());
 			listeProduit.add(prod);
 			montantTotal=montantTotal+prod.getPrix()* (double) com.getProduitCommande().get(prod.getId_produit());
@@ -177,7 +175,6 @@ public class ClientController {
 		model.addAttribute("montantTotal",montantTotal);
 		model.addAttribute("com",com);
 		model.addAttribute("listeProduit", listeProduit);
-		System.out.println("fin de la méthode");
 		return "facture";
 	}
 	/***
