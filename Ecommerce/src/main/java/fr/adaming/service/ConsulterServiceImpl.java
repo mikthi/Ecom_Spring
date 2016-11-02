@@ -48,7 +48,7 @@ public class ConsulterServiceImpl implements IConsulterService {
 	@Override
 	public List<Produit> chercherProduitsParMotCle(String motCle) {
 		return consulterDao.chercherProduitsParMotCle(motCle);
-		
+
 	}
 
 	@Override

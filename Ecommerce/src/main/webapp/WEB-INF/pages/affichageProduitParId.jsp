@@ -1,74 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Produit</title>
+<title>Produit modifié</title>
 </head>
+
 <body>
-	<div align="center">
-		<h1>Affichage produit</h1>
+	<%@include file="template/header.jsp"%>
 
-		<table>
-			<tr>
-				<td>
-					<form action="formAjoutCateg">
-						<input type="submit" value="Ajouter Catégorie">
-					</form>
-				</td>
-				<td>
-					<form action="formAjoutProd">
-						<input type="submit" value="Ajouter Produit">
-					</form>
-				</td>
-				<td>
-					<form action="">
-						<input type="submit" value="Rechercher Produit">
-					</form>
-				</td>
-				<td align="right">
-					<form action="listeCategories">
-						<input type="submit" value="Afficher Catégories">
-					</form>
-				</td>
-				<td>
-					<form action="listeProduits">
-						<input type="submit" value="Afficher Produits">
-					</form>
-				</td>
-			</tr>
-		</table>
+	<div class="container" align="center">
+		<h2 style="font-family: cursive; font-style: italic;">Affichage
+			du produit modifié</h2>
+		<br />
 
-		<table>
-			<tr bgcolor="grey" style="color: white">
-				<th>ID</th>
-				<th>Catégorie</th>
-				<th>Nom</th>
-				<th>Description</th>
-				<th>Prix</th>
-				<th>Edition</th>
+		<table class="table table-hover">
+			<tr bgcolor="grey" style="color: white" align="center">
+				<td style="font-weight: bold;">ID</td>
+				<td style="font-weight: bold;">Catégorie</td>
+				<td style="font-weight: bold;">Nom</td>
+				<td style="font-weight: bold;">Description</td>
+				<td style="font-weight: bold;">Prix</td>
+				<td style="font-weight: bold;">Edition</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>${prod.id_produit}</td>
 				<td>${prod.categorie.nom}</td>
 				<td>${prod.nom}</td>
 				<td>${prod.description}</td>
-				<td>${prod.prix}</td>
+				<td>${prod.prix}&euro;</td>
 				<td>
 					<form action="formModifProd?IdProduit=${prod.id_produit}"
 						method="post">
-						<input type="submit" value="Modifier">
+						<button type="submit" class="btn btn-warning btn-lg">Modifier</button>
 					</form>
 				</td>
 			</tr>
 		</table>
 
-		<br /> <a href="<c:url value="/j_spring_security_logout" />"> Se
+		<br /> <a style="float: right;"
+			href="<c:url value="/j_spring_security_logout" />"> Se
 			deconnecter</a>
-
 	</div>
+
 </body>
+
 </html>
