@@ -1,6 +1,10 @@
 package fr.adaming.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 /**
  * @author inti0210
@@ -10,7 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,16 +31,19 @@ public class Client extends Personne{
 	private int id_client;
 	private String mail;
 	private String telephone;
-
-	@OneToOne(mappedBy = "client")
-	private Adresse adresse;
+	private String voie;
+	private String ville;
+	private int codePostal;
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Commande> listeCommande;
 
 	/**
 	 * Constructeur vide
 	 */
 	public Client() {
-		adresse = new Adresse();
+	
 	}
+
 
 	/**
 	 * Constructeur avec paramètres sans id
@@ -87,6 +94,22 @@ public class Client extends Personne{
 	}
 
 	/**
+	 * @return the listeCommande
+	 */
+	public List<Commande> getListeCommande() {
+		return listeCommande;
+	}
+
+
+	/**
+	 * @param listeCommande the listeCommande to set
+	 */
+	public void setListeCommande(List<Commande> listeCommande) {
+		this.listeCommande = listeCommande;
+	}
+
+
+	/**
 	 * @return the mail
 	 */
 	public String getMail() {
@@ -114,6 +137,48 @@ public class Client extends Personne{
 	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	/**
+	 * @return the voie
+	 */
+	public String getVoie() {
+		return voie;
+	}
+
+	/**
+	 * @param voie the voie to set
+	 */
+	public void setVoie(String voie) {
+		this.voie = voie;
+	}
+
+	/**
+	 * @return the ville
+	 */
+	public String getVille() {
+		return ville;
+	}
+
+	/**
+	 * @param ville the ville to set
+	 */
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	/**
+	 * @return the codePostal
+	 */
+	public int getCodePostal() {
+		return codePostal;
+	}
+
+	/**
+	 * @param codePostal the codePostal to set
+	 */
+	public void setCodePostal(int codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	/**

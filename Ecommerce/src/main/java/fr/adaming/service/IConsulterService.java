@@ -16,7 +16,7 @@ public interface IConsulterService {
 
 	public List<Categorie> consulterToutesLesCategories();
 
-	public List<Produit> consulterLesProduitsParCategorie(Categorie c);
+	public List<Produit> consulterLesProduitsParCategorie(int id_categ);
 
 	public Produit consulterProduitSelectionne(int id_produit);
 

@@ -1,12 +1,11 @@
 package fr.adaming.service;
 
 import fr.adaming.model.Client;
-import fr.adaming.model.Panier;
-
+import fr.adaming.model.Commande;
 
 public interface ICommanderService extends IConsulterService{
 
-	public void enregistrerClient(Client cl);
 
-	public void passerCommande(Panier panier);
+	public void passerCommande(Commande com);
+	public void enregistrerClient(Client cl);
 }

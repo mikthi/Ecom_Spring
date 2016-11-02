@@ -24,7 +24,7 @@
 		<property name="password" value="${db.password}"></property>
 	</bean>
 	
-	
+	<bean id="panierBean" class="fr.adaming.model.Panier"></bean>
 <!-- création du bean sessionFactory-->
 	<bean id="sessionFactoryBean"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -45,7 +45,7 @@
 			</props>
 		</property>
 	</bean>
-	
+
 <!--  déclaration du transactionManagerBean -->
 <bean id="transactionManagerBean" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 <property name="sessionFactory" ref="sessionFactoryBean"/>

@@ -23,7 +23,6 @@ public class ProduitValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description",
 				"Le renseignement de ce champ est indispensable.",
 				"Le renseignement de la description du produit est indispensable.");
-		
 	}
 
 }
