@@ -22,7 +22,7 @@
 		<property name="url" value="${db.url}"></property>
 		<property name="username" value="${db.user_name}"></property>
 		<property name="password" value="${db.password}"></property>
-	</bean>
+	</bean>	
 	
 	<bean id="panierBean" class="fr.adaming.model.Panier"></bean>
 <!-- création du bean sessionFactory-->

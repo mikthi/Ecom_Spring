@@ -28,8 +28,7 @@
 			modelAttribute="com">
 			<table>
 				<tr>
-					<td><form:label path="id_commande" />Nombre
-						de produit à commander :</td>
+					<td><form:label path="id_commande" />Référence de la facture :</td>
 					<td><form:input type="number"
 							path="id_commande" /></td>
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
