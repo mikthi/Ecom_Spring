@@ -122,15 +122,29 @@ public class ClientController {
 	@RequestMapping(value="/ajouterProduitPanier", method=RequestMethod.POST)
 	public String ajouterProduitPanier(Panier panier, ModelMap model,  HttpSession session)
 	{
-		
+		double prixLigneCommande;	
 		Panier panierSession =(Panier) session.getAttribute("panier");
-		int idProduitCommande= (int) session.getAttribute("IdProduitSelectionne");
-		panierSession.getProduitCommande().put(idProduitCommande, panier.getQuantiteProdSelectionneACommander());
-		double prixLigneCommande;
-		Produit prodCommande=commanderService.consulterProduitParId(idProduitCommande);
+		int IdProduitSelectionne= (int) session.getAttribute("IdProduitSelectionne");
+		if(panierSession.getProduitCommande().containsKey(IdProduitSelectionne))
+		{
+			//produit deja en panier
+			int produitEnPanier=panierSession.getProduitCommande().get(IdProduitSelectionne);
+			int nouvelQuantite=produitEnPanier-panierSession.getQuantiteProdSelectionneACommander();
+			
+			Produit prodCommande=commanderService.consulterProduitParId(IdProduitSelectionne);
+			prixLigneCommande=prodCommande.getPrix()*nouvelQuantite;
+			panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
+			
+		}
+		else 
+		{
+			// produit non présent en panier
+			panierSession.getProduitCommande().put(IdProduitSelectionne, panier.getQuantiteProdSelectionneACommander());
+			Produit prodCommande=commanderService.consulterProduitParId(IdProduitSelectionne);
+			prixLigneCommande=prodCommande.getPrix()*panier.getQuantiteProdSelectionneACommander();
+			panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
+		}
 		
-		prixLigneCommande=prodCommande.getPrix()*panier.getQuantiteProdSelectionneACommander();
-		panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
 		session.setAttribute("panier", panierSession);	
 		model.addAttribute("listeCateg", commanderService.consulterToutesLesCategories());	
 		int idChoixCateg=(int) session.getAttribute("idChoixCateg");
@@ -243,6 +257,5 @@ public class ClientController {
 		
 		return "home";
 	}
-	
-	
+
 }

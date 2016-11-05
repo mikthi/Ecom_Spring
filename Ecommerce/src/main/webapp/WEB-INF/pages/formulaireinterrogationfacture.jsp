@@ -38,7 +38,6 @@
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td>	<a  href="accueil" class="btn btn-default btn-sm"
 						type="button"> retour à l'accueil </a></td>
-						
 					
 				</tr>
 			</table>
