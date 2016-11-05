@@ -129,12 +129,12 @@ public class ClientController {
 		{
 			//produit deja en panier
 			int produitEnPanier=panierSession.getProduitCommande().get(IdProduitSelectionne);
-			int nouvelQuantite=produitEnPanier-panierSession.getQuantiteProdSelectionneACommander();
-			
+			int nouvelQuantite=panier.getQuantiteProdSelectionneACommander();
+			System.out.println("ancienne quantité : "+ produitEnPanier+"\nnouvel quantité : "+ nouvelQuantite);
 			Produit prodCommande=commanderService.consulterProduitParId(IdProduitSelectionne);
-			prixLigneCommande=prodCommande.getPrix()*nouvelQuantite;
+			prixLigneCommande=prodCommande.getPrix()*(nouvelQuantite-produitEnPanier);
 			panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
-			
+			panierSession.getProduitCommande().put(IdProduitSelectionne, panier.getQuantiteProdSelectionneACommander());
 		}
 		else 
 		{
