@@ -17,7 +17,7 @@ public class Panier {
 
 	private Map<Integer, Integer> produitCommande;
 	private double montantTotalPanier;
-	private int quantiteProdSelectionneACommander;
+	
 
 	/**
 	 * Constructeur vide
@@ -60,20 +60,6 @@ public class Panier {
 	 */
 	public double getMontantTotalPanier() {
 		return montantTotalPanier;
-	}
-
-	/**
-	 * @return the quantiteProdSelectionneACommander
-	 */
-	public int getQuantiteProdSelectionneACommander() {
-		return quantiteProdSelectionneACommander;
-	}
-
-	/**
-	 * @param quantiteProdSelectionneACommander the quantiteProdSelectionneACommander to set
-	 */
-	public void setQuantiteProdSelectionneACommander(int quantiteProdSelectionneACommander) {
-		this.quantiteProdSelectionneACommander = quantiteProdSelectionneACommander;
 	}
 
 	/**

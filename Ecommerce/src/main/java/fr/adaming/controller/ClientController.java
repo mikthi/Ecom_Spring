@@ -1,20 +1,39 @@
 package fr.adaming.controller;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.HeaderFooter;
+import com.lowagie.text.pdf.PdfWriter;
+
+import fr.adaming.beans.FacturePDF;
+import fr.adaming.beans.IExportFichier;
 import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
 import fr.adaming.model.Panier;
@@ -110,8 +129,6 @@ public class ClientController {
 		}
 		return "home";
 	}
-	
-	
 	/***
 	 * ajout du produit dans un objet panier mis en session
 	 * @param panier
@@ -120,38 +137,36 @@ public class ClientController {
 	 * @return
 	 */
 	@RequestMapping(value="/ajouterProduitPanier", method=RequestMethod.POST)
-	public String ajouterProduitPanier(Panier panier, ModelMap model,  HttpSession session)
+	public String ajouterProduitPanier(Integer QuantiteSelect , ModelMap model,  HttpSession session)
 	{
 		double prixLigneCommande;	
+		System.out.println("Id" +QuantiteSelect);
 		Panier panierSession =(Panier) session.getAttribute("panier");
 		int IdProduitSelectionne= (int) session.getAttribute("IdProduitSelectionne");
 		if(panierSession.getProduitCommande().containsKey(IdProduitSelectionne))
 		{
 			//produit deja en panier
 			int produitEnPanier=panierSession.getProduitCommande().get(IdProduitSelectionne);
-			int nouvelQuantite=panier.getQuantiteProdSelectionneACommander();
-			System.out.println("ancienne quantité : "+ produitEnPanier+"\nnouvel quantité : "+ nouvelQuantite);
+			System.out.println("ancienne quantité : "+ produitEnPanier+"\nnouvel quantité : "+ QuantiteSelect);
 			Produit prodCommande=commanderService.consulterProduitParId(IdProduitSelectionne);
-			prixLigneCommande=prodCommande.getPrix()*(nouvelQuantite-produitEnPanier);
+			prixLigneCommande=prodCommande.getPrix()*(QuantiteSelect-produitEnPanier);
 			panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
-			panierSession.getProduitCommande().put(IdProduitSelectionne, panier.getQuantiteProdSelectionneACommander());
 		}
 		else 
 		{
 			// produit non présent en panier
-			panierSession.getProduitCommande().put(IdProduitSelectionne, panier.getQuantiteProdSelectionneACommander());
 			Produit prodCommande=commanderService.consulterProduitParId(IdProduitSelectionne);
-			prixLigneCommande=prodCommande.getPrix()*panier.getQuantiteProdSelectionneACommander();
+			prixLigneCommande=prodCommande.getPrix()*QuantiteSelect;
 			panierSession.setMontantTotalPanier(panierSession.getMontantTotalPanier()+prixLigneCommande);
 		}
-		
+		panierSession.getProduitCommande().put(IdProduitSelectionne,QuantiteSelect);
 		session.setAttribute("panier", panierSession);	
 		model.addAttribute("listeCateg", commanderService.consulterToutesLesCategories());	
 		int idChoixCateg=(int) session.getAttribute("idChoixCateg");
 		if(idChoixCateg==0)
 			model.addAttribute("listeProd", commanderService.consulterTousLesProduits());
 		else
-		model.addAttribute("listeProd", commanderService.consulterLesProduitsParCategorie(idChoixCateg ));
+			model.addAttribute("listeProd", commanderService.consulterLesProduitsParCategorie(idChoixCateg ));
 		return "home";
 	}
 	@RequestMapping(value="/supprimerProduitPanier")
@@ -200,7 +215,6 @@ public class ClientController {
 	{
 		double montantTotal=0;
 		com =commanderService.consulterCommande(com.getId_commande());
-		System.out.println(com.getClient().toString());
 		List<Produit> listeProduit = new ArrayList<>();
 		Set<Integer> listeClePanier = com.getProduitCommande().keySet();
 		Iterator<Integer> iterator = listeClePanier.iterator();
@@ -213,6 +227,7 @@ public class ClientController {
 		model.addAttribute("montantTotal",montantTotal);
 		model.addAttribute("com",com);
 		model.addAttribute("listeProduit", listeProduit);
+		session.setAttribute("IdCommande", com.getId_commande());
 		return "facture";
 	}
 	/***
@@ -254,8 +269,84 @@ public class ClientController {
 		model.addAttribute("listeProd", commanderService.consulterTousLesProduits());
 		session.setAttribute("panier", new Panier());
 		model.addAttribute("accesFacture", "Veuillez conserver ce numéro, il permettra d'acceder à votre facture : "+ com.getId_commande());
-		
+		  
+		 
 		return "home";
 	}
 
+	@RequestMapping(value="/getFacturePdf", method=RequestMethod.GET)
+	public void getFacturePDF(HttpServletRequest request , HttpServletResponse response,  HttpSession session) throws IOException
+	{
+
+     
+           int BUFFER_SIZE = 4096;
+        
+        /**
+         * Path of the file to be downloaded, relative to application's directory
+         */
+         String filePath = "/download/test.pdf";
+        
+
+     
+            // get absolute path of the application
+            ServletContext context = request.getServletContext();
+            Commande com = commanderService.consulterCommande((int)session.getAttribute("IdCommande"));
+            
+            String appPath = context.getRealPath("");
+            System.out.println("appPath = " + appPath);
+            // construct the complete absolute path of the file
+            String fullPath = appPath + filePath;      
+            IExportFichier factPdf =new FacturePDF();
+            
+            
+    		List<Produit> listeProduit = new ArrayList<>();
+    		Set<Integer> listeClePanier = com.getProduitCommande().keySet();
+    		Iterator<Integer> iterator = listeClePanier.iterator();
+    		double montantTotal=0;
+    		while(iterator.hasNext()){
+    			Produit prod=commanderService.consulterProduitParId(iterator.next());
+    			listeProduit.add(prod);
+    			montantTotal=montantTotal+prod.getPrix()* (double) com.getProduitCommande().get(prod.getId_produit());
+    		}
+    		
+    		
+            
+            
+            File downloadFile = new File(factPdf.ExportFichierPDF(appPath, com,montantTotal,listeProduit));
+            FileInputStream inputStream = new FileInputStream(downloadFile);
+             
+            // get MIME type of the file
+            String mimeType = context.getMimeType(fullPath);
+            if (mimeType == null) {
+                // set to binary type if MIME mapping not found
+                mimeType = "application/octet-stream";
+            }
+            System.out.println("MIME type: " + mimeType);
+     
+            // set content attributes for the response
+            response.setContentType(mimeType);
+            response.setContentLength((int) downloadFile.length());
+     
+            // set headers for the response
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"",
+                    downloadFile.getName());
+            response.setHeader(headerKey, headerValue);
+     
+            // get output stream of the response
+            OutputStream outStream = response.getOutputStream();
+     
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int bytesRead = -1;
+     
+            // write bytes read from the input stream into the output stream
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+            }
+     
+            inputStream.close();
+            outStream.close();
+		
+		
+	}
 }

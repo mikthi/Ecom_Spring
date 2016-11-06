@@ -29,7 +29,7 @@
 			<table>
 				<tr>
 					<td><form:label path="id_commande" />Référence de la facture :</td>
-					<td><form:input type="number"
+					<td><form:input type="number" min="0"
 							path="id_commande" /></td>
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 

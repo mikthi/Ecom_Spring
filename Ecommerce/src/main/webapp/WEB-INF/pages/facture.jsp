@@ -21,10 +21,11 @@
 	<h1 align="center">Votre facture du ${com.dateCommande }</h1>
 
 
-
+<td><a href="getFacturePdf"
+									class="btn btn-default btn-sm" type="button">Télcharger Facture</a></td>
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
-		<div align="center" class="panel-heading">référence de la commande : ${com.id_commande} <br/> <strong>Contact :</strong> <br/>Mail :  ${com.client.mail},<br/> Telephone :  ${com.client.telephone} <br/> 
+		<div align="center" class="panel-heading">référence de la commande : ${com.id_commande} <br/> <strong>Contact : </strong> <br/>Nom : ${com.client.nom}<br/> Prénom : ${com.client.prenom}<br/>Mail :  ${com.client.mail},<br/> Telephone :  ${com.client.telephone} <br/> 
 			<strong>Adresse :</strong> <br/> rue : ${com.client.voie }<br/> ville : ${com.client.ville } ${com.client.codePostal }
 		</div>
 

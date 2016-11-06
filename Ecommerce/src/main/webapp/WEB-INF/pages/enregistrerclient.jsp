@@ -27,6 +27,20 @@
 
 			<table>
 				<tr>
+					<td><form:label path="nom" />Nom :</td>
+					<td><form:input path="nom" /></td>
+				</tr>
+				<tr>
+					<td><br></td>
+				</tr>
+				<tr>
+					<td><form:label path="prenom" />Prenom :</td>
+					<td><form:input path="prenom" /></td>
+				</tr>
+				<tr>
+					<td><br></td>
+				</tr>
+								<tr>
 					<td><form:label path="mail" />mail :</td>
 					<td><form:input path="mail" /></td>
 				</tr>

@@ -36,14 +36,13 @@
 		<p>${produitSelectionne.description}</p>
 		<br />
 
-		<form:form method="post" action="ajouterProduitPanier"
-			modelAttribute="panier">
+		<form:form method="post" action="ajouterProduitPanier">
 			<table>
 				<tr>
-					<td><form:label path="quantiteProdSelectionneACommander" />Nombre
-						de produit à commander :</td>
-					<td><form:input type="number"
-							path="quantiteProdSelectionneACommander" /></td>
+					<td><label value="Nombre
+						de produit à commander :" ></label></td>
+					<td><input type="number"
+							name="QuantiteSelect" min="0"/></td>
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
 					<td><input class="btn btn-default btn-sm" type="submit"

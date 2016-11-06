@@ -49,6 +49,9 @@
 							<tr>
 								<td><a href="formInterrogFacture"
 									class="btn btn-default btn-sm" type="button"> Facture</a></td>
+									
+								
+								
 								<td><a href="consulterPanier"
 									class="btn btn-default btn-sm glyphicon glyphicon-shopping-cart"
 									type="button"> Panier </a></td>

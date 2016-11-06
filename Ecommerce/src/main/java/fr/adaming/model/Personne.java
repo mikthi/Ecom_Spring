@@ -22,8 +22,8 @@ public abstract class Personne implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String nom;
-	private String prenom;
+	protected String nom;
+	protected String prenom;
 
 	/**
 	 * Constructeur vide
